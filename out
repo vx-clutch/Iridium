@@ -1,0 +1,3 @@
+Char 8 is =
+[{name fn} {name main} {assign =} {brace {} {name return} {semicolon ;} {brace }} {semicolon ;}]
+{Program   <nil> <nil> [{StringLiteral fn  <nil> <nil> [] [] <nil> <nil>} {StringLiteral main  <nil> <nil> [] [] <nil> <nil>} {Assign =  <nil> <nil> [] [] <nil> <nil>} {ObjectLiteral  return <nil> <nil> [] [{Semicolon ;  <nil> <nil> [] [] <nil> <nil>}] <nil> <nil>} {Semicolon ;  <nil> <nil> [] [] <nil> <nil>}] [] <nil> <nil>}
