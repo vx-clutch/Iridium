@@ -22,7 +22,7 @@ func m_interpret(source []byte) {
 	src := string(source)
 	tokens := m_lexer(src)
 	ast := m_ast(tokens)
-	program := m_program(ast)
+	log.Println(ast)
 }
 
 func m_lexer(src string) []token {
