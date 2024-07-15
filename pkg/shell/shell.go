@@ -1,7 +1,7 @@
 package shell
 
 import (
-	"filler/pkg/interpreter"
+	"filler/pkg/compiler"
 	"fmt"
 	"strings"
 )
@@ -15,5 +15,5 @@ func Parse(file *string) {
 		fmt.Println(fmt.Sprintf("error: Incorrect file extention:\n\texpected: main.fl found: %v", *file))
 		return
 	}
-	interpreter.Run(*file)
+	compiler.Run(*file)
 }

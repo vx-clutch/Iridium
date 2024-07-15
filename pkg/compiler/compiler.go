@@ -1,6 +1,7 @@
-package interpreter
+package compiler
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -10,7 +11,7 @@ func Run(file string) {
 	if err != nil {
 		panic(err)
 	}
-	m_interpret(contents)
+	m_compile(contents)
 }
 
 type token struct {
@@ -18,11 +19,18 @@ type token struct {
 	value string
 }
 
-func m_interpret(source []byte) {
+func m_compile(source []byte) {
 	src := string(source)
+	m_build("src.out", []byte(fmt.Sprintln(src)))
 	tokens := m_lexer(src)
+	m_build("tokens.out", []byte(fmt.Sprintln(tokens)))
 	ast := m_ast(tokens)
-	log.Println(ast)
+	m_build("ast.out", []byte(fmt.Sprintln(ast)))
+}
+
+func m_build(path string, contents []byte) error {
+	err := os.WriteFile(path, contents, 0666)
+	return err
 }
 
 func m_lexer(src string) []token {
