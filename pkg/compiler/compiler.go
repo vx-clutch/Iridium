@@ -216,19 +216,10 @@ func walk() node {
 	if token.kind == "brace" && token.value == "{" {
 		pc++
 		token = pt[pc]
-		n := node{
+		return node{
 			kind:   "ObjectLiteral",
-			name:   token.value,
 			params: []node{},
 		}
-		pc++
-		token = pt[pc]
-		for token.kind != "brace" || (token.kind == "brace" && token.value != "}") {
-			n.params = append(n.params, walk())
-			token = pt[pc]
-		}
-		pc++
-		return n
 	}
 	if token.kind == "paren" && token.value == "(" {
 		pc++
