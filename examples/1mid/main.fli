@@ -1,0 +1,2 @@
+MAIN: ; Main Function
+	RETURN 20 ; Exits with 20

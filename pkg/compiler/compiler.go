@@ -37,6 +37,7 @@ func m_lexer(src string) []token {
 	source := string(src[:])
 	current := 0
 	tokens := []token{}
+	fmt.Println(len([]rune(source)))
 
 	for current < len([]rune(source)) {
 		char := string([]rune(source)[current])
@@ -168,7 +169,7 @@ func m_ast(tokens []token) ast {
 	pt = tokens
 
 	ast := ast{
-		kind: "Program",
+		kind: "prog",
 		body: []node{},
 	}
 	for pc < len(pt) {
@@ -179,6 +180,17 @@ func m_ast(tokens []token) ast {
 
 func walk() node {
 	token := pt[pc]
+	if token.kind == "name" {
+		pc++
+		switch token.value {
+		case "fn":
+			return node{kind: "Function"}
+		case "exit":
+			return node{kind: "Exit"}
+		case "void":
+			return node{kind: "Void"}
+		}
+	}
 	if token.kind == "semicolon" {
 		pc++
 		return node{
@@ -202,22 +214,17 @@ func walk() node {
 	}
 	if token.kind == "assign" {
 		pc++
-		if pt[pc+1].kind == "assign" {
-			return node{
-				kind:  "Equal",
-				value: "==",
-			}
-		}
 		return node{
 			kind:  "Assign",
 			value: "=",
 		}
 	}
-	if token.kind == "brace" && token.value == "{" {
+	if token.kind == "brace" {
 		pc++
 		token = pt[pc]
 		return node{
 			kind:   "ObjectLiteral",
+			value:  token.value,
 			params: []node{},
 		}
 	}
