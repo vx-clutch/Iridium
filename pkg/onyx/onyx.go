@@ -2,12 +2,22 @@ package irep
 
 import (
 	"fmt"
+	"os"
 )
 
-func Compile(source string) {
-	source += "\n"
-	fmt.Println(source)
-	tokens := m_lexer(source)
+func Compile(file string) {
+	contents, err := os.ReadFile(file)
+	if err != nil {
+		panic(err)
+	}
+	m_compile(contents)
+}
+
+func m_compile(source []byte) {
+	src := string(source)
+	src += "\n"
+	fmt.Println(src)
+	tokens := m_lexer(src)
 	fmt.Println(tokens)
 }
 
@@ -20,7 +30,6 @@ func m_lexer(src string) []token {
 	source := string(src[:])
 	current := 0
 	tokens := []token{}
-	fmt.Println(len([]rune(source)))
 
 	for current < len([]rune(source)) {
 		char := string([]rune(source)[current])

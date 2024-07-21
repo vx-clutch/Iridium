@@ -16,5 +16,6 @@ func main() {
 	if len(os.Args) > 3 {
 		fmt.Println("error: Too many args")
 	}
-	shell.Parse(arg0, arg1)
+	fmt.Println(arg0, arg1)
+	shell.Parse(arg0, &arg1)
 }
