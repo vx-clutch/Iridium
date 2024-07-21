@@ -1,2 +1,2 @@
-MAIN: ; Main Function
-	RETURN 20 ; Exits with 20
+MAIN
+	RETURN 20

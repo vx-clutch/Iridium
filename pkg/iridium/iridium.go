@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func Run(file string) {
+func Compile(file string) {
 	contents, err := os.ReadFile(file)
 	if err != nil {
 		panic(err)
