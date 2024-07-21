@@ -2,8 +2,8 @@ package shell
 
 import (
 	"fmt"
-	"iridium/pkg/irep"
 	"iridium/pkg/iridium"
+	"iridium/pkg/onyx"
 	"strings"
 )
 
@@ -12,9 +12,9 @@ func Parse(command string, file string) {
 		fmt.Println("Incomplete Feature: Help Text")
 		return
 	}
-	if command == "irep" {
-		if !strings.HasSuffix(file, ".irep") {
-			fmt.Println(fmt.Sprintf("error: Incorrect file extention:\n\texpected: main.irep found: %v", file))
+	if command == "onyx" {
+		if !strings.HasSuffix(file, ".onyx") {
+			fmt.Println(fmt.Sprintf("error: Incorrect file extention:\n\texpected: main.onyx found: %v", file))
 			return
 		}
 		irep.Compile(file)
