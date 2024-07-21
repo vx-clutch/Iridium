@@ -1,8 +1,8 @@
 package shell
 
 import (
-	"filler/pkg/compiler"
 	"fmt"
+	"iridium/pkg/iridium"
 	"strings"
 )
 
@@ -11,9 +11,9 @@ func Parse(file *string) {
 		fmt.Println("Incomplete Feature: Help Text")
 		return
 	}
-	if !strings.HasSuffix(*file, ".fl") {
-		fmt.Println(fmt.Sprintf("error: Incorrect file extention:\n\texpected: main.fl found: %v", *file))
+	if !strings.HasSuffix(*file, ".ir") {
+		fmt.Println(fmt.Sprintf("error: Incorrect file extention:\n\texpected: main.ir found: %v", *file))
 		return
 	}
-	compiler.Run(*file)
+	iridium.Run(*file)
 }
