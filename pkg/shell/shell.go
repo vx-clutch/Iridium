@@ -17,7 +17,7 @@ func Parse(command string, file *string) {
 			fmt.Println(fmt.Sprintf("error: Incorrect file extention:\n\texpected: main.onyx found: %v", file))
 			return
 		}
-		irep.Compile(*file)
+		onyx.Compile(*file)
 	}
 	if command == "iridium" {
 		if !strings.HasSuffix(*file, ".ir") {

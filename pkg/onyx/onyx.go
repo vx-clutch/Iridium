@@ -1,4 +1,4 @@
-package irep
+package onyx
 
 import (
 	"fmt"
