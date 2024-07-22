@@ -23,7 +23,21 @@ $$
 \text{literals} \\
 \text{variables}
 \end{matrix} 
+\right\} \to \text{Function}
+\end{matrix}
 \right\}
-    \end{matrix}
-    \right\}
 $$
+
+# Syntax Examples
+These examples exit with code ```20```
+## Examples for Iridium
+```
+fn main = {
+    exit = 20
+} => void
+```
+## Examples for Onyx
+```
+MAIN:
+    EXIT, 20 
+```
