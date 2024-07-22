@@ -83,6 +83,8 @@ func m_lexer(src string) []token {
 		}
 		if char == "=" {
 			tokens = append(tokens, token{kind: "assign", value: "="})
+			current++
+			continue
 		}
 		if char == " " || char == "\n" || char == "\t" || char == "" {
 			current++
@@ -112,11 +114,6 @@ func m_lexer(src string) []token {
 				kind:  "name",
 				value: value,
 			})
-			continue
-		}
-		// FIX: idk
-		if current == 8 {
-			current++
 			continue
 		}
 		break
