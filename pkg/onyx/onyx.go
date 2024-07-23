@@ -93,3 +93,20 @@ func isLetter(char string) bool {
 	}
 	return false
 }
+
+type node[T any] struct {
+	operation string
+	args      []T
+}
+
+type ast struct {
+	kind  string
+	value []node
+}
+
+func m_ast(tokens []token) []ast {
+	prog := ast{
+		"prog",
+		[]node,
+	}
+}

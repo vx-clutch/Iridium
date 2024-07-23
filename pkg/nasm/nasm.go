@@ -2,13 +2,14 @@ package nasm
 
 import (
 	"fmt"
+	"os/exec"
 	"runtime"
 )
 
 func Nasm(asm string) {
-	os := runtime.GOOS
+	runos := runtime.GOOS
 	var nasmFlags string
-	switch os {
+	switch runos {
 	case "linux":
 		nasmFlags = "-f elf64"
 	case "windows":
@@ -16,8 +17,12 @@ func Nasm(asm string) {
 	case "darwin":
 		nasmFlags = "-f macho64"
 	default:
-		fmt.Printf("Unsupported OS: %s\n", os)
+		fmt.Printf("Unsupported OS: %s\n", runos)
 		return
 	}
-	cmd := fmt.Sprintf("nasm %v -o a.o %v; ld -o a.out a.o", nasmFlags, asm)
+	cmd := exec.Command("nasm", nasmFlags, "-o", "main.o", asm)
+	_, err := cmd.Output()
+	if err != nil {
+		panic(err)
+	}
 }
