@@ -99,14 +99,14 @@ type node[T any] struct {
 	args      []T
 }
 
-type ast struct {
-	kind  string
-	value []node
-}
-
-func m_ast(tokens []token) []ast {
-	prog := ast{
-		"prog",
-		[]node,
-	}
-}
+// type ast struct {
+// 	kind  string
+// 	value []node
+// }
+//
+// func m_ast(tokens []token) []ast {
+// 	prog := ast{
+// 		"prog",
+// 		[]node,
+// 	}
+// }

@@ -21,16 +21,9 @@ type token struct {
 
 func m_compile(source []byte) {
 	src := string(source)
-	m_build("src.out", []byte(fmt.Sprintln(src)))
 	tokens := m_lexer(src)
-	m_build("tokens.out", []byte(fmt.Sprintln(tokens)))
 	ast := m_ast(tokens)
-	m_build("ast.out", []byte(fmt.Sprintln(ast)))
-}
-
-func m_build(path string, contents []byte) error {
-	err := os.WriteFile(path, contents, 0666)
-	return err
+	fmt.Println(src, tokens, ast)
 }
 
 func m_lexer(src string) []token {
@@ -43,52 +36,42 @@ func m_lexer(src string) []token {
 		char := string([]rune(source)[current])
 		if char == "(" {
 			tokens = append(tokens, token{kind: "paren", value: "("})
-			current++
-			continue
+			goto next
 		}
 		if char == ")" {
 			tokens = append(tokens, token{kind: "paren", value: ")"})
-			current++
-			continue
+			goto next
 		}
 		if char == "[" {
 			tokens = append(tokens, token{kind: "bracket", value: "["})
-			current++
-			continue
+			goto next
 		}
 		if char == "]" {
 			tokens = append(tokens, token{kind: "bracket", value: "]"})
-			current++
-			continue
+			goto next
 		}
 		if char == "{" {
 			tokens = append(tokens, token{kind: "brace", value: "{"})
-			current++
-			continue
+			goto next
 		}
 		if char == "}" {
 			tokens = append(tokens, token{kind: "brace", value: "}"})
-			current++
-			continue
+			goto next
 		}
 		if char == ";" {
 			tokens = append(tokens, token{kind: "semicolon", value: ";"})
-			current++
-			continue
+			goto next
 		}
 		if char == ":" {
 			tokens = append(tokens, token{kind: "colon", value: ":"})
-			current++
-			continue
+			goto next
 		}
 		if char == "=" {
 			tokens = append(tokens, token{kind: "assign", value: "="})
-			current++
-			continue
+			goto next
 		}
 		if char == " " || char == "\n" || char == "\t" || char == "" {
-			current++
-			continue
+			goto next
 		}
 		if isNumber(char) {
 			value := ""
@@ -117,8 +100,12 @@ func m_lexer(src string) []token {
 			continue
 		}
 		break
+	next:
+		current++
+		continue
 	}
 	return tokens
+
 }
 
 func isNumber(char string) bool {
